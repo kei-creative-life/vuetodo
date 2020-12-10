@@ -1,0 +1,22 @@
+.todo-container{
+	background-color: bisque;
+	border-radius: 5px;
+}
+
+.todo-often-container{
+	background-color: lightgray;
+	border-radius: 5px;
+}
+
+.donestyle{
+	text-decoration: line-through;
+	color:lightgray;
+}
+
+.list-enter-active,.test-leave-active{
+	transition: 0.5s;
+}
+.list-enter,.list-leave-to{
+	opacity:0;
+	transform:translateX(50px);
+}

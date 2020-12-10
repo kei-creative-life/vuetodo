@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VueTodo</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="container">
+		<div id="app">
+			<h2 class="py-2">Todoリスト</h2>
+			<p>{{remaining}}/{{todos.length}}件処理</p>
+			<div class="todo-container p-3 mb-3">
+				<div v-for="todo in todos" :key="todo['text']">
+					<label for="">
+						<input type="checkbox" v-model="todo.done">
+						<span :class="{donestyle:todo.done}">{{todo.text}}</span>
+					</label>
+				</div>
+			</div>
+			<input type="text" placeholder="すること" class="mb-2" v-model.trim="addText" v-on:keyup.enter="addTodo">
+			<div class="mb-3">
+				<button @click="cleanTodo" class="btn btn-sm btn-warning">処理済を削除</button>
+			</div>
+
+			<h2 class="py-2">頻繁に行うTodo</h2>
+			<div class="todo-often-container p-3 mb-3">
+				<div v-for="(todo,index) in todosOften" :key="todo['text']">
+					<div class="d-flex align-items-center mb-2">
+						<!-- <input type="checkbox" v-model="todo.done"> -->
+						<span v-model="todo.text">{{todo.text}}</span>
+						<button @click="addTodoFromOften(index)"
+							class="btn btn-sm btn-info ml-auto">Todoリストに追加</button>
+						<button @click="removeFromOften(index)" class="btn btn-sm btn-danger">削除</button>
+					</div>
+				</div>
+			</div>
+			<div>
+				<input v-model="addOftenTodo" type="text" class="mb-2">
+				<div>
+					<button @click="addToOften" class="btn btn-sm btn-warning">リストに追加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.global.js"></script>
+	<script src="script.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
